@@ -1,12 +1,16 @@
 {
   "name": "sudaisbot",
   "version": "1.0.0",
+  "description": "Sudais WhatsApp Bot using Baileys",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "@hapi/boom": "^10.0.1",
-    "@whiskeysockets/baileys": "^6.6.0"
-  }
+    "@whiskeysockets/baileys": "^6.7.8",
+    "@hapi/boom": "^10.0.1"
+  },
+  "author": "Sudais Ahmad",
+  "license": "MIT"
 }
