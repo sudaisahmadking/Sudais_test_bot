@@ -1,7 +1,6 @@
 {
   "name": "sudaisbot",
   "version": "1.0.0",
-  "description": "Sudais WhatsApp Bot",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
