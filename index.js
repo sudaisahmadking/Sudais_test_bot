@@ -1,26 +1,25 @@
-import makeWASocket, { useSingleFileAuthState } from '@whiskeysockets/baileys'
-import { Boom } from '@hapi/boom'
-import fs from 'fs'
+const { default: makeWASocket, useSingleFileAuthState } = require('@whiskeysockets/baileys');
+const { Boom } = require('@hapi/boom');
+const fs = require('fs');
 
-const { state, saveState } = useSingleFileAuthState('./auth_info.json')
+const { state, saveState } = useSingleFileAuthState('./auth_info.json');
 
 async function startBot() {
   const sock = makeWASocket({
     auth: state,
-    printQRInTerminal: false, // QR nahi chahiye
+    printQRInTerminal: false,
     browser: ['SudaisBot', 'Chrome', '1.0'],
-    usePairingCode: true // 🔐 important: pairing code se login hoga
-  })
+    usePairingCode: true
+  });
 
-  sock.ev.on('creds.update', saveState)
+  sock.ev.on('creds.update', saveState);
 
-  // 5 second baad pairing code generate hoga
   setTimeout(async () => {
     if (!sock.authState.creds.registered) {
-      const code = await sock.requestPairingCode("923325582040") // apna WhatsApp number
-      console.log(`📲 Pair this code in WhatsApp: ${code}`)
+      const code = await sock.requestPairingCode("923325582040");
+      console.log(`📲 Pair this code in WhatsApp: ${code}`);
     }
-  }, 5000)
+  }, 5000);
 }
 
-startBot()
+startBot();
